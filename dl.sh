@@ -15,7 +15,7 @@
   DL=/bin/wget
 ############################################################################################
 LN=1							# line number
-TLN=`grep "^[^#\!]" links | wc -l | awk '{print $1}'`	# number of input file lines
+TLN=`grep "^[^#\!]" $1 | wc -l | awk '{print $1}'`	# number of input file lines
 ERRC=0							# errors count
 DATE=`date`						# using for log
 
