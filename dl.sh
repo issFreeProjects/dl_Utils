@@ -14,14 +14,14 @@
 # DL=(your choice)
   DL=/bin/wget
 ############################################################################################
-LN=1					# line number
-TLN=`wc -l $1 | awk '{print $1}'`	# number of input file lines
-ERRC=0					# errors count
-DATE=`date`				# using for log
+LN=1							# line number
+TLN=`grep "^[^#\!]" links | wc -l | awk '{print $1}'`	# number of input file lines
+ERRC=0							# errors count
+DATE=`date`						# using for log
 
 for line in `cat $1`
 do
-    if echo $line | grep "^[^#!]" >> /dev/null  # lines that don't start with !(failure) and #(done)
+    if echo $line | grep "^[^#!]" >> /dev/null  	# lines that don't start with !(failure) and #(done)
     then
 	echo "Downloading:" "$(tput bold 0)$(tput setab 4) link" $LN "of" $TLN "$(tput sgr 0)"
 	$DL $line  # run download command 
