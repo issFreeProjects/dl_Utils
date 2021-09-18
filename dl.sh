@@ -14,7 +14,8 @@
 # DL=(your choice)
   DL=/bin/wget
 ############################################################################################
-LN=1							# line number
+LN=1							# line number counter
+LNN=1							# line's that not commented number counter
 TLN=`grep "^[^#\!]" $1 | wc -l | awk '{print $1}'`	# number of input file lines
 ERRC=0							# errors count
 DATE=`date`						# using for log
@@ -23,7 +24,7 @@ for line in `cat $1`
 do
     if echo $line | grep "^[^#!]" >> /dev/null  	# lines that don't start with !(failure) and #(done)
     then
-	echo "Downloading:" "$(tput bold 0)$(tput setab 4) link" $LN "of" $TLN "$(tput sgr 0)"
+	echo "Downloading:" "$(tput bold 0)$(tput setab 4) link" $LNN "of" $TLN "$(tput sgr 0)"
 	$DL $line  # run download command 
 	stat=$?    # fetch exit code
 	if [[ stat -eq 0 ]]
@@ -38,6 +39,7 @@ do
 		echo $line >> failedList   # add line to failedList log file
 		let ERRC++
 	fi
+	let LNN++ # increase not commented lines counter
     fi
     let LN++  # increase the line counter
 done
