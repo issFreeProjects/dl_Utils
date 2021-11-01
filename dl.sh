@@ -24,7 +24,7 @@ for line in `cat $1`
 do
     if echo $line | grep "^[^#!]" >> /dev/null  	# lines that don't start with !(failure) and #(done)
     then
-	echo "Downloading:" "$(tput bold 0)$(tput setab 4) link" $LNN "of" $TLN "$(tput sgr 0)"
+	echo "$(tput bold 0)$(tput setab 4) Downloading: " $LNN "/" $TLN "$(tput sgr 0)"
 	$DL $line  # run download command 
 	stat=$?    # fetch exit code
 	if [[ stat -eq 0 ]]
