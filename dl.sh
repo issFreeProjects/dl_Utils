@@ -8,10 +8,8 @@
 # 
 #   also you can use youtube-dl:
 #	  /use/bin/youtube-dl
-#	or youtube-dl only audio:
-#         /usr/bin/youtube-dl -x --audio-format mp3 --proxy socks5://127.0.0.1:9050
 #
-# DL=(your choice)
+# only change the following line with pattern ( DL=(your choice) )
   DL=/bin/wget
 ############################################################################################
 LN=1							# line number counter
