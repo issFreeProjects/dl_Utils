@@ -33,7 +33,10 @@ do
 		# if this error be the first error
 		[[ ERRC -eq 0 ]] && echo "####################  at:     $DATE  ####################" >> failedList
 		echo "$(tput bold 0)$(tput setab 1) "some failure! - exit code=$stat" $(tput sgr 0)"
-		sed -i "$LN {s/^/\!/}" $1  # adding ! to the beginning of the line
+		if [ "$2" != "--ignore" ] && [ "$2" != '-i' ]
+		then
+			sed -i "$LN {s/^/\!/}" $1  # adding ! to the beginning of the line
+		fi
 		echo $line >> failedList   # add line to failedList log file
 		let ERRC++
 	fi
